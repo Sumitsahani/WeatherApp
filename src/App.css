@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+
+body {
+  font-family: 'Playfair Display', Arial, sans-serif;
+  background: lightsteelblue;
+  margin: 0;
+  padding: 0;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.app {
+  width: 90%;
+  max-width: 700px;
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid lightgray;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.app-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: darkblue;
+  font-family: 'Playfair Display', serif;
+}
+
+.city-selector {
+  margin-bottom: 20px;
+}
+
+#city-select {
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid gray;
+  background: white;
+  color: black;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#city-select:hover {
+  background: lightgray;
+}
+
+.weather-card {
+  background: #f0f0f0;
+  border: 1px solid lightgray;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.weather-card:hover {
+  background: lightcoral;
+  transform: translateY(-6px);
+}
+
+.weather-card h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: darkblue;
+  font-family: 'Playfair Display', serif;
+}
+
+.weather-card p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: black;
+}
+
+
+.forecast-container {
+  margin-top: 20px;
+}
+
+.forecast-container h3 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: darkblue;
+  font-family: 'Playfair Display', serif;
+}
+
+
+.forecast-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.forecast-card {
+  background: #f0f0f0;
+  border: 1px solid lightgray;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.forecast-card:hover {
+  background: lightgreen;
+  transform: translateY(-6px);
+}
+
+.forecast-card h4 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  color: darkblue;
+  font-family: 'Playfair Display', serif;
+}
+
+.forecast-card p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .app {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .app-title {
+    font-size: 2rem;
+
+  }
+
+  .forecast-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .forecast-card {
+    padding: 12px;
+  }
+
+  #city-select {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-title {
+    font-size: 1.6rem;
+  }
+
+  .weather-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .forecast-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .forecast-card {
+    padding: 10px;
+  }
+
+  .forecast-container h3 {
+    font-size: 1.2rem;
+  }
+
+  .forecast-card h4 {
+    font-size: 1rem;
+  }
+}
