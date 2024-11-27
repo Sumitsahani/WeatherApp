@@ -9,13 +9,14 @@ const App = () => {
   const [city, setCity] = useState(savedCity);
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
+  const [days, setDays] = useState(3);
 
   useEffect(() => {
     localStorage.setItem("city", city);
-    getWeatherData(city);
-  }, [city]);
+    getWeatherData(city, days);
+  }, [city, days]);
 
-  const getWeatherData = async (city) => {
+  const getWeatherData = async (city, days) => {
     const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherAPIKey}&units=metric`;
     const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${weatherAPIKey}&units=metric`;
 
@@ -25,7 +26,11 @@ const App = () => {
 
     const forecastResponse = await fetch(forecastUrl);
     const forecastData = await forecastResponse.json();
-    setForecast(forecastData.list.slice(0, 3));
+
+    const filteredForecast = forecastData.list.filter(
+      (_, index) => index < days
+    );
+    setForecast(filteredForecast);
   };
 
   return (
@@ -46,6 +51,18 @@ const App = () => {
         </select>
       </div>
 
+      <div className="days-input">
+        <label htmlFor="days-select">Days:</label>
+        <input
+          type="number"
+          id="days-select"
+          value={days}
+          min="1"
+          max="100"
+          onChange={(e) => setDays(Number(e.target.value))}
+        />
+      </div>
+
       {weather && (
         <div className="weather-card">
           <h2>{weather.name}</h2>
@@ -56,7 +73,7 @@ const App = () => {
 
       {forecast.length > 0 && (
         <div className="forecast-container">
-          <h3>3-Day Forecast</h3>
+          <h3>{days}-Day Forecast</h3>
           <div className="forecast-cards">
             {forecast.map((day, index) => (
               <div key={index} className="forecast-card">
